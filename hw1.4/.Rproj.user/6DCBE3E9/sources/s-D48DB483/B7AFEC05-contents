@@ -1,0 +1,7 @@
+x <- read.csv("HW1-4_Walk.csv")
+
+bp <- ggplot("HW1-4Walk.c", aes(x=group, y=weight))+
+  geom_boxplot()
+bp
+# Horizontal box plot
+bp + coord_flip()

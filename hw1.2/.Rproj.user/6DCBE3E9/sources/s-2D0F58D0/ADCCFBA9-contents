@@ -1,0 +1,7 @@
+x <- c(27,19,18,17,9,9)
+stat(x)
+
+grep ('F', x$ï..A, value = TRUE)
+
+hist(x)
+barplot(x)

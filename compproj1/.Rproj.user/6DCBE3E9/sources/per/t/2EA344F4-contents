@@ -1,0 +1,92 @@
+---
+  title: "Computer Project #1"
+author: "Patrick Wong"
+date: "9/11/2018"
+output: pdf_document
+---
+
+  ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## MATH 324 Ch 3.4
+
+
+## Identify Binomial vs Geometric R.V. (Random Variable) - Level 0:
+
+## a)
+```{r}
+print ("Geometric Random Variable")
+```
+## b)
+```{r}
+print("Binominal Random Variable")
+```
+## c)
+```{r}
+print("Geometric Random Variable")
+```
+## d)
+```{r}
+print("Binominal Random Variable")
+```
+## e)
+```{r}
+print("Binominal Random Variable")
+```
+
+## Basic Binominal R.V. Calculations - Level 1:
+
+## a)
+```{r}
+dbinom(4, 9, 0.4)
+
+```
+## b)
+```{r}
+barplot(z, ylim = c(0,20), ylab ="Classes", xlab = "Students in class", col = c("light blue"))
+```
+## c)
+``` {r}
+count <- 0
+for (i in z){
+  if (i > 3){
+    count <- count + 1
+    print (count)
+  }
+}
+```
+## d)
+Yes there is outliers, and they are 17 and 13.
+```{r}
+paste0 ("Interquartile range: ", IQR(unlist(z)))
+quantile(z)
+```
+
+
+##Exercise 3:
+
+## a)
+```{r}
+xd <- seq(from=2, to=24, by=2)
+```
+## b)
+``` {r}
+log(xd)
+```
+## c)
+```{r}
+remove <- c(4, 6, 8, 10)
+xd %in% remove
+xd [! xd %in% remove]
+```
+
+
+## d)
+```{r}
+length(xd [! xd %in% remove])
+```
+## e)
+```{r}
+sort(xd [! xd %in% remove])
+```

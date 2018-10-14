@@ -1,0 +1,161 @@
+---
+title: "Computer Project #1"
+author: "Patrick Wong"
+date: "9/11/2018"
+output: pdf_document
+---
+
+  ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## MATH 324 Computer Project 1
+
+
+##1: 
+
+## a)
+```{r}
+  x <- c(16.85,16.4,17.21,16.35,16.52,17.04,16.96,17.15,16.59,16.57)
+  y <- c(16.62,16.75,17.37,17.12,16.98,16.87,17.34,17.02,17.08,17.27)
+```
+
+    
+## b)
+```{r}
+  print("Modified Mortar (x): ")
+```
+```{r}
+  #mean(x)
+  paste0("Mean: ", mean(x))
+```
+```{r}
+  #median(x)
+  paste0("Median: ", median(x))
+```
+```{r}
+   print("Unmodified Mortar (y): ")
+```
+```{r}
+  #mean(x)
+  paste0("Mean: ", mean(y))
+```
+```{r}
+  #median(x)
+  paste0("Median: ", median(y))
+```
+## c)
+```{r}
+  print("Modified Mortar (x): ")
+```
+```{r}
+  #sd(x)
+  paste0("Sample standard deviation: ", sd(x))
+```
+```{r}
+  #var(x)
+  paste0("Sample variance: ", var(x))
+```
+```{r}
+  #IQR(x)
+  paste0("Interquartile range: ", IQR(x))
+```
+```{r}
+  print("Unmodified Mortar (y): ")
+```
+```{r}
+  #sd(x)
+  paste0("Sample standard deviation: ", sd(y))
+```
+```{r}
+  #var(x)
+  paste0("Sample variance: ", var(y))
+```
+```{r}
+  #IQR(x)
+  paste0("Interquartile range: ", IQR(y))
+```
+## d)
+```{r}
+  print("Modified Mortar (x): ")
+```
+```{r}
+  hist(x)
+```
+```{r}
+  print("Unmodified Mortar (y): ")
+```
+```{r}
+  hist(y)
+```
+## e)
+```{r}
+  print("Modified Mortar (x): ")
+```
+```{r}
+  boxplot(x)
+```
+```{r}
+  print("Unmodified Mortar (y): ")
+```
+```{r}
+  boxplot(y)
+```
+
+
+
+##Exercise 2: 
+
+## a)
+```{r}
+  z <- c(4,5,17,13,4,4,3,6,4,7,4,6,4,4,5,6,6,5,4,5,4,4,4,3,4,5,4,5,6,6,4,6,4,3,6,5,4,3,6,5,4,5,5,5,5,4,5,5)
+  table(z)
+```
+## b)
+```{r}
+ barplot(z, ylim = c(0,20), ylab ="Classes", xlab = "Students in class", col = c("light blue"))
+```
+## c)
+``` {r}
+count <- 0
+for (i in z){
+  if (i > 3){
+    count <- count + 1
+    print (count)
+  }
+}
+```
+## d)
+Yes there is outliers, and they are 17 and 13.
+```{r}
+paste0 ("Interquartile range: ", IQR(unlist(z)))
+quantile(z)
+```
+
+
+##Exercise 3:
+
+## a)
+```{r}
+xd <- seq(from=2, to=24, by=2)
+```
+## b)
+``` {r}
+log(xd)
+```
+## c)
+```{r}
+remove <- c(4, 6, 8, 10)
+xd %in% remove
+xd [! xd %in% remove]
+```
+
+
+## d)
+```{r}
+length(xd [! xd %in% remove])
+```
+## e)
+```{r}
+sort(xd [! xd %in% remove])
+```

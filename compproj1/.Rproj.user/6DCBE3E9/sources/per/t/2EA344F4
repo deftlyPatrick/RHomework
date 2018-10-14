@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1539230511803.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "570772841",
+    "id" : "2EA344F4",
+    "lastKnownWriteTime" : 1539231504,
+    "last_content_update" : 1539231504,
+    "path" : "~/compproj1/R/hw4.rmd",
+    "project_path" : "R/hw4.rmd",
+    "properties" : {
+        "cursorPosition" : "92,0",
+        "scrollLine" : "39",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
