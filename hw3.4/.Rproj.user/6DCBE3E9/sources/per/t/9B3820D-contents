@@ -1,0 +1,255 @@
+---
+title: "CH 3.4"
+author: "Patrick Wong"
+date: "9/11/2018"
+output: pdf_document
+---
+  
+  ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## MATH 324 Ch 3.4
+
+
+## Identify Binomial vs Geometric R.V. (Random Variable) - Level 0:
+
+## 1A)
+Geometric Random Variable
+
+## 1B)
+Binominal Random Variable
+
+## 1C)
+Geometric Random Variable
+
+## 1D)
+Binominal Random Variable
+
+## 1E)
+Binominal Random Variable
+
+
+## Basic Binominal R.V. Calculations - Level 1:
+
+choose(x,y)*p^x*(1-p)^(n-x)
+
+## 2A)
+
+```{r}
+a <- choose(9,4)*(0.4^4)*(1-0.4)*(9-4) + 
+  choose(9,5)*(0.4^5)*(1-0.4)*(9-5) + 
+  choose(9,6)*(0.4^6)*(1-0.4)*(9-6) + 
+  choose(9,7)*(0.4^7)*(1-0.4)*(9-7) + 
+  choose(9,8)*(0.4^8)*(1-0.4)*(9-8)
+
+paste0(a)
+```
+## 2B)
+```{r}
+a <- (choose(9,6)*(0.6^6)*(1-0.6)*(9-6)
++ choose(9,7)*(0.6^7)*(1-0.6)*(9-7)
++ choose(9,8)*(0.6^8)*(1-0.6)*(9-8))
+
+paste0(a)
+```
+## 2C)
+```{r}
+a <- (choose(11,1)*(0.1^1)*(1-0.1)*(11-1)
+      + choose(11,2)*(0.1^2)*(1-0.1)*(11-2) 
+      + choose(11,3)*(0.1^3)*(1-0.1)*(11-3) 
+      + choose(11,4)*(0.1^4)*(1-0.1)*(11-4) 
+      + choose(11,5)*(0.1^5)*(1-0.1)*(11-5)
+      + choose(11,6)*(0.1^6)*(1-0.1)*(11-6) 
+      + choose(11,7)*(0.1^7)*(1-0.1)*(11-7)
+      + choose(11,8)*(0.1^8)*(1-0.1)*(11-8) 
+      + choose(11,9)*(0.1^9)*(1-0.1)*(11-9)
+      + choose(11,10)*(0.1^10)*(1-0.1)*(11-10))
+
+paste0("pbinom: ", pbinom(a, 11, 0.1))
+```
+## 2D)
+```{r}
+a <-  choose(7,4)*(0.4^4)*(1-0.4)*(7-4)
+paste0("pbinom: ", pbinom(a, 7, 0.4))
+```
+
+## Binominal R.V. Problems Level 2-3:
+
+
+## 3A)
+```{r}
+paste0("Expected Value: ", 30*0.25)
+paste0("Standard Deviation: ", sqrt(30*0.25*0.7))
+```
+
+## 3B)
+``` {r}
+print("Probability of people who wants new copies: ")
+print("P(|X - 7.5| > 2*2.29 ))")
+print("P( X > 7.5 + 4.58 or X < 7.5 - 4.58)")
+print("P(X > 12.08 + P(X <= 2.29)")
+print("P(X > 12 + P(X < 2)")
+paste0(1 - pbinom(12, 30, 0.25) + pbinom(2, 30, 0.25))
+```
+## 3C)
+```{r}
+print("P(X<=15) - P(X<10)")
+paste0(pbinom(15, 30, 0.3) - pbinom(9, 30, 0.3))
+```
+## 3D)
+
+$200(X) + $120(30-X) = 0
+X = 7.5
+$80 * X * $3600
+```{r}
+a <- paste0(80*7.5*3600)
+paste0("Total revenue:", a)
+```
+## 4)
+$8.00 for passenger cars
+$32.00 for large trucks
+80% daytime = passenger cars
+25 cars cross bridge
+```{r}
+paste0(25*0.8 , " cars")
+paste0(25-20, "other cars")
+paste0("Expected Toll Revenue: $", 20*8 + 32*5)
+```
+## 5A)
+At least 5 have no citations
+```{r}
+print("1 - P(0 Citations)")
+paste0(1 - 0.5)
+```
+
+P(X <= 5) = pbinom(5, 10, 0.5)
+```{r}
+paste0(pbinom(5, 10, 0.5))
+```
+## 5B) 
+Fewer than half have at least one citation
+P(X < 5)
+```{r}
+paste0(pbinom(4, 10, 0.5))
+```
+## 5C)
+The number that have at least one citation is between 3 and 8, inclusive
+P(3 <= X <= 8)
+```{r}
+paste0((choose(10, 3)*(0.5)^3*(1-0.5)^7) + 
+         (choose(10, 4)*(0.5)^4*(1-0.5)^6) + 
+         (choose(10, 5)*(0.5)^5*(1-0.5)^5) + 
+         (choose(10, 6)*(0.5)^6*(1-0.5)^4) + 
+         (choose(10, 7)*(0.5)^7*(1-0.5)^3) + 
+         (choose(10, 8)*(0.5)^8*(1-0.5)^2))
+```
+##Geometric R.V Calculations
+
+Formula = (1-p)^x-1 p 
+
+## 6A)
+```{r}
+paste0("Geometric PDF: ",dgeom(4, 0.7))
+paste0("Geometric CDF: ",pgeom(4, 0.7))
+```
+
+## 6B)
+```{r}
+a <- ((1-0.7)^4*(0.7))
+paste0("F(5): ", a)
+```
+
+## 6C)
+P(X >= 8) = 1 - P(X <= 7)
+= 1-(1-(1-p)^x)
+= (1-p)^x
+```{r}
+a <- (1-0.7)^7
+paste0("P(X >= 8): ", a)
+```
+}
+
+Formula = (1-p)^x-1 p 
+## 7A)
+E(x) = 1/p
+```{r}
+paste0("Expected value: ", 1/0.1)
+```
+## 7B)
+```{r}
+a <- (1-0.1)^6
+paste0("P(6) = :", a)
+```
+## 7C)
+```{r}
+a <- (1-0.1)^14
+paste0("P(X < 15): ", a)
+```
+
+## Optional More Challenging Binomial Problem - Boss Level
+
+## 9A)
+At least one individual with a reservation cannot be accommodated on the trip?
+P(X = 5) + P(X = 6)
+1-0.25 = 0.75
+```{r}
+a <- choose(6,5)*(0.75)^5*(1-0.75)^(6-5)+choose(6,6)*(0.75)^6*(1-0.75)^(6-6)
+paste0("At least one individual with a reservation cannot be accommodated on the trip? ", a)
+```
+
+## 9B)
+Expected numbers of available seats when shuttle departs
+Expected value: 1(P(X=3)) + 2(P(X=2)) + 3(P(X=1)) + 4(P(X=0))
+```{r}
+a <- choose(6,0)*(0.75)^0*(0.25)^(6-0)
+b <- choose(6,1)*(0.75)^1*(0.25)^(6-1)
+c <- choose(6,2)*(0.75)^2*(0.25)^(6-2)
+d <- choose(6,3)*(0.75)^3*(0.25)^(6-3)
+e <- 1*a + 2*b + 3*c + 4*d
+paste0("Expected numbers of available seats when shuttle departs: ", e)
+```
+
+## 9C)
+Probability distribution of the number of reservations given
+
+P(X = 0)
+```{r}
+a <- 0.1*choose (3,0)*(0.75^0)*(0.25)^(3-0) + 
+  0.3*choose (4,0)*(0.75^0)*(0.25)^(4-0) + 
+  0.4*choose (5,0)*(0.75^0)*(0.25)^(5-0) +
+  0.2*choose (6,0)*(0.75^0)*(0.25)^(6-0)
+paste0("P(X=0): " , a)
+```
+P(X = 1)
+```{r}
+a <- 0.1*choose (3,1)*(0.75^1)*(0.25)^(3-1) + 
+  0.3*choose (4,1)*(0.75^1)*(0.25)^(4-1) + 
+  0.4*choose (5,1)*(0.75^1)*(0.25)^(5-1) +
+  0.2*choose (6,1)*(0.75^1)*(0.25)^(6-1)
+paste0("P(X=1): " , a)
+```
+P(X = 2)
+```{r}
+a <- 0.1*choose (3,2)*(0.75^2)*(0.25)^(3-2) + 
+  0.3*choose (4,2)*(0.75^2)*(0.25)^(4-2) + 
+  0.4*choose (5,2)*(0.75^2)*(0.25)^(5-2) +
+  0.2*choose (6,2)*(0.75^2)*(0.25)^(6-2)
+paste0("P(X=2): " , a)
+```
+P(X = 3)
+```{r}
+a <- 0.1*choose (3,3)*(0.75^3)*(0.25)^(3-3) + 
+  0.3*choose (4,3)*(0.75^3)*(0.25)^(4-3) + 
+  0.4*choose (5,3)*(0.75^3)*(0.25)^(5-3) +
+  0.2*choose (6,3)*(0.75^3)*(0.25)^(6-3)
+paste0("P(X=3): " , a)
+```
+P(X = 4)
+```{r}
+a <- 0.1*choose (3,4)*(0.75^4)*(0.25)^(3-4) + 
+  0.3*choose (4,4)*(0.75^4)*(0.25)^(4-4) + 
+  0.4*choose (5,4)*(0.75^4)*(0.25)^(5-4) +
+  0.2*choose (6,4)*(0.75^4)*(0.25)^(6-4)
+paste0("P(X=4): " , a)
+```

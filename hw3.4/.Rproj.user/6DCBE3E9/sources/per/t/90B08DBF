@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1539232206797.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2154208472",
+    "id" : "90B08DBF",
+    "lastKnownWriteTime" : 1539235001,
+    "last_content_update" : 1539235001046,
+    "path" : "~/hw4/test.R",
+    "project_path" : "test.R",
+    "properties" : {
+        "cursorPosition" : "12,18",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

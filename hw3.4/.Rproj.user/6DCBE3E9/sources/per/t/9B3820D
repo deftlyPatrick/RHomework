@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1539232178824.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1591300834",
+    "id" : "9B3820D",
+    "lastKnownWriteTime" : 1539244496,
+    "last_content_update" : 1539244496282,
+    "path" : "~/hw4/hw.rmd",
+    "project_path" : "hw.rmd",
+    "properties" : {
+        "cursorPosition" : "3,8",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
