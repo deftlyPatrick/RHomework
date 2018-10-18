@@ -1,0 +1,113 @@
+---
+title: "CH 3.5"
+author: "Patrick Wong"
+date: "10/17/2018"
+output: pdf_document
+---
+
+  ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## MATH 324 Ch 3.5
+
+
+## Negative Binomial and Hypergeometric Practice:
+
+## 1A)
+
+N = 20 individuals ;
+M = 10 taking the test for the first time ;
+n = 5 sample size ; 
+X = the number among the five who are taking the test for the first time ;
+
+## 1B)
+X = 2
+```{r}
+dhyper(2, 10, 10, 5)
+```
+X <= 2
+P(X=0) + P(X=1) + P(X=2)
+```{r}  
+dhyper(0,10,10,5) + dhyper(1,10,10,5) + dhyper(2,10,10,5)
+```
+X >= 2
+P(X=2) + P(X>2)
+```{r}
+dhyper(2,10,10,5) + 1 - dhyper(0,10,10,5) + dhyper(1,10,10,5) + dhyper(2,10,10,5)
+```
+
+## 1C)
+
+mean = nM/N
+
+```{r}
+(5*10)/20
+```
+
+standard deviation
+
+```{r}
+sqrt((20-5/20-1)*2.5*(1-(10/20)))
+```
+
+## 2A)
+p = 0.1 ; 
+r = 2 ;
+x = 0.9 ;
+r = Number of successes ;
+p = Pr(getting the skin) ;
+x = number of failures ;
+dnbinom(x, 2, 0.1) ;
+(x+1)(0.1)^2*(0.9)^x ;
+
+## 2B)
+After obtained two of the prizes ;
+1(W),1(L),1(W),1(L),1(??? never reach because two prizes has been obtained) ;
+or 1(L),1(W),1(L),1(W),1(L) ;
+
+```{r}
+dnbinom(2, 2, 0.1)
+```
+
+## 2C)
+P(X<=2)
+P(X=0) + P(X=1) + P(X=2)
+```{r}
+dnbinom(0,2,0.1) + dnbinom(1,2,0.1) + dnbinom(2,2,0.1) 
+```
+## 2D)
+E(X) = r(1-p)/p
+
+```{r}
+a <- ((2*(1-0.1))/0.1)
+paste0(a)
+```
+
+## Poisson Practice
+
+## 3A)
+X <= 15
+
+```{r}
+ppois(15, 20)
+```
+
+## 3B)
+X > 25
+
+```{r}
+1 - ppois(25, 20)
+```
+## 3C)
+P(20-2(sqrt(20))) <= X <= P(20+2(sqrt(20))) ;
+sqrt(20) = 4.47213595 ;
+= P(12 <= X <= 28) ;  
+```{r}
+ppois(28, 20) - ppois(11,20)
+```
+
+
+## Some Data Collection about Student Learning
+
+Doing the homework
