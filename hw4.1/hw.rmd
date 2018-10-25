@@ -1,0 +1,46 @@
+---
+title: "CH 4.1"
+author: "Patrick Wong"
+date: "10/24/2018"
+output: pdf_document
+---
+
+  ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## MATH 324 Ch 4.1
+
+
+## PDF (Probability Density Function): Calculations
+
+##1A)
+```{r}
+x_seq = seq(-2, 2, by = 0.1)
+fx = 0.075*(4-0.5*x_seq^2)
+plot(x_seq, fx, type = 'l')
+```
+
+## PDF: Calculations Written as Word Problems & More Exotic Looking Densities 
+
+##3A)
+```{r}
+y_seq <- seq(0, 10, by = 1)
+ylength <- length(y_seq)
+yz <- 1:ylength
+Ysum <- y_seq
+for (y in yz){
+  for(j in 1:y){
+  if ((y >= 0) && (y < 5 )){
+    Ysum[y] = (1/25)*(y)
+  }
+  else if((y >= 5) && (y < 10)){
+    Ysum[y] = (2/5)-((1/25)*(y))
+  }
+  else{
+    Ysum[y] = 0
+  }
+  }
+}
+plot(y_seq,Ysum, type = "l")
+```
