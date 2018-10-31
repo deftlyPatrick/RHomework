@@ -1,0 +1,169 @@
+---
+title: "CH 4.3"
+author: "Patrick Wong"
+date: "10/31/2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## MATH 324 Ch 4.2
+
+##Standard Normal R Calculations
+
+##1A) P(0 < Z < 2.17)?
+```{r}
+pnorm(2.17) - pnorm(0)
+```
+
+##1B) P(-2.5 <= Z <= 0)?
+```{r}
+pnorm(0) - pnorm(-2.5)
+```
+
+##1C) P(-2.5 <= Z <= 2.5)?
+```{r}
+pnorm(2.5)-pnorm(-2.5)
+```
+##1D) P(Z <= 1.37)?
+```{r}
+pnorm(1.37)
+```
+
+##1E) P(Z >= -1.75)?
+```{r}
+1-pnorm(-1.75)
+```
+
+##1G) P(-1.5 <= Z <= 2)?
+```{r}
+pnorm(2)-pnorm(-1.5)
+```
+
+##1H) P(1.37 <= Z <= 2.5)?
+```{r}
+pnorm(2.5)-pnorm(1.37)
+```
+
+##1I) P(Z >= 1.5)?
+```{r}
+1-pnorm(1.5)
+```
+
+
+##1J) P(|Z| <= 2.50) = P(-2.50 <= Z <= 2.50)
+```{r}
+pnorm(2.5)-pnorm(-2.5)
+```
+
+## Percentiles of Z
+
+##2A) n(91)
+phi(z) = 0.91 = c = 1.34 
+
+##2B) n(9)
+phi(z) = 0.09 = -0.91 = -1.34
+
+##2C) n(75)
+phi(z) = 0.75 = c =.675
+
+##2D) n(25)
+phi(z) = 0.25 = -0.75 = -0.675
+
+##2E) n(6)
+phi(z) = 0.06 = c = -0.1555
+
+##3A) phi(c) = 0.9838 (98.38th percentile)
+found in 2.1 row and the 0.04 column so standard table = c = 2.14
+
+##3B) P(0 <= Z <= c)= 0.291
+phi(c) = 0.7910 = c =0.81
+
+##3C) 1 - phi(c)=P(Z >= c)=.121
+ 1 - P(c <= Z) = P(Z < c) = phi(c)= 1 - 0.121 = 0.8790 = c = 1.17
+ 
+##3D) P(-c <= Z <= c)= 0.668
+P(-c<= Z <= c)= phi(c)- pho(-c) = phi(c) – (1 - phi(c)) = 2 * phi(c) – 1 = 
+phi(c)= 0.9920 = c = 0.97
+
+##3E) P(|Z| >= c)=.016
+1 - 0.016 = 0.9840 = 1–P(c <= |Z|) = P(|Z| < c) = P(-c < Z < c) = 
+phi(c) - phi(-c) = 2 * phi(c) – 1 = 
+phi(c) = 0.9920 = c = 2.41
+
+##4A) alpha = 0.0055 (99.45th percentile)
+```{r}
+qnorm(0.055)
+```
+
+##4B) alpha = 0.09 (100(1-.09)th percentile)
+```{r}
+qnorm(0.09)
+```
+
+##4C) alpha = 0.663 (100(1-.66)th percentile)
+```{r}
+qnorm(0.663)
+```
+
+##Word Problems for X ~ N(Mu, sigma ^ 2)
+
+In a road-paving process, asphalt mix is transfered by truck. 
+Let X = truck haul time be normally distributed with mean 8.46 min 
+and standard deviation .913 min.
+
+##5A)
+What is the probability that haul time will be at least 10 minutes?
+
+P(X >= 10) = P((X - Mu/sigma) >= 10-8.46/0.913)
+P(Z >= 1.69)
+P(Z <= -1.69)
+```{r}
+pnorm(-1.69)
+```
+
+##5B)
+What is the probability that haul time will exceed 10 minutes?
+
+P(X > 10) = P(X >= 10)
+= 0.0455
+
+##5C) 
+What is the probability that haul time will be between 8 and 10 minutes?
+
+P(8 <= X <= 10) = P((8-8.46/0.913) <= (X - Mu/sigma) <= (10-8.46/0.913))
+= P(-0.5 <= Z <= 1.69)
+= P(Z <= 1.69) - P(Z <= -0.5)
+```{r}
+pnorm(1.69) - pnorm(-0.5)
+```
+
+##5D)
+What value c is such that 98% of all haul times are in the interval 
+from 8.46 - c to 8.46 + c.
+
+P(8.46 - c <= X <= 8.46 + c) = 0.98
+P(-c <= X -8.46 <= c) = 0.98
+P(-c <= X - Mu <= c) = 0.98
+P((-c/0.913) <= (X - Mu/sigma) <= (c/0.9.13) = 0.98
+P((-c/0.913 <= Z <= (c/0.913)) = 0.98
+2P (Z <= c/0.913) - 1 = 0.98
+P(Z <= c/0.913) = 1+0.98/2
+P(Z <= c/0.913) = 0.99
+c/0.913 = 2.33
+c = 2.33 * 0.913
+c = 2.127
+
+
+##5E)
+If four haul times are independently selected, what is the probability that at least one of them
+exceeds 10 minutes?
+
+P(X > 10) = 0.0455
+P(at least on exceeds) = 1 - P(none of the four exceeds)
+= 1 - P(X<10)^4
+= 1 - [1 - P(X > 10)]^4
+= 1 - [1 - 0.0455]^4
+= 0.169951

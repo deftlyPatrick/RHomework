@@ -1,0 +1,52 @@
+---
+title: "Math 324: Hw #0"
+author: "Luella Fu"
+date: "8/28/2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction to R Markdown (taken from the R Markdown template)
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+We use it in this class so that you can write up your R code, your math work, and your written homework all in one document. You must use this for your R code. If you prefer to write down math equations by hand, you may do so as well, but attach all work to your R Markdown document whenever a homework problem requires R or a written explanation.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+
+## Question 1
+\textbf{a) Label questions} Label each question so I know which question you're working on. 
+
+\textbf{b) Label parts of the question} Also label the parts of the question like this.
+
+
+
+
+## Question 2: Math equations
+You can also include math equations by surrounding them in **two dollar signs**. The following example is taken from the R Markdown template.
+
+$$
+\int_{-\infty}^{\infty} \frac{1}{x} = ln(x)
+$$
+
+## Question 3: R code
+You can include pieces of R code by surrounding them in **triple quotes** and after the begining triple quotes, you need to **put a label**.  The following two pieces of R code are taken from the R Markdown template.
+
+\textbf{a)  R code snippit and output} Here is an example of R code and output.
+
+```{r cars}
+summary(cars)
+```
+
+
+\textbf{b) Include plots}
+
+You can also embed plots, for example:
+
+```{r pressure}
+plot(pressure)
+```
