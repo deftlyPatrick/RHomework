@@ -9,7 +9,7 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## MATH 324 Ch 4.2
+## MATH 324 Ch 4.3
 
 ##Standard Normal R Calculations
 
