@@ -1,0 +1,32 @@
+"0","n <- 5
+simulatedData5 <- matrix(rexp(n*sample_size, lambda), nrow=sample_size, ncol=n)
+simMeans5 <- apply(simulatedData5, 1, mean)
+sampleMean5 <- round(mean(simMeans5),3);
+paste0(""sampleMean for n = 5: "" , sampleMean5)
+"
+"1","[1]"
+"1"," ""sampleMean for n = 5: 4.976"""
+"1","
+"
+"0","theoreticalMean5 <- round(1/lambda,3);"
+"0","paste0(""theoreticalMean for n = 5: "", theoreticalMean5)"
+"1","[1]"
+"1"," ""theoreticalMean for n = 5: 5"""
+"1","
+"
+"0","# if the sample size is 50"
+"0","m <- 50"
+"0","simulatedData50 <- matrix(rexp(m*sample_size, lambda), nrow=sample_size, ncol=m)"
+"0","simMeans50 <- apply(simulatedData50, 1, mean)"
+"0","sampleMean50 <- round(mean(simMeans50),3);"
+"0","paste0(""sampleMean for n = 50: "" , sampleMean50)"
+"1","[1]"
+"1"," ""sampleMean for n = 50: 4.967"""
+"1","
+"
+"0","theoreticalMean50 <- round(1/lambda,3);"
+"0","paste0(""theoreticalMean for n = 50: "", theoreticalMean50)"
+"1","[1]"
+"1"," ""theoreticalMean for n = 50: 5"""
+"1","
+"

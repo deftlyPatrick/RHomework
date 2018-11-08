@@ -1,0 +1,5 @@
+"0","qqnorm(simMeans5)
+qqline(simMeans5)
+qqnorm(simMeans50)
+"
+"0","qqline(simMeans50)"

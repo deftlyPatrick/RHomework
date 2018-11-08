@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1541637459082.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3800741421",
+    "id" : "FA5269F5",
+    "lastKnownWriteTime" : 1541646343,
+    "last_content_update" : 1541646343539,
+    "path" : "~/compproj2/testCode.R",
+    "project_path" : "testCode.R",
+    "properties" : {
+        "cursorPosition" : "28,18",
+        "scrollLine" : "18",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

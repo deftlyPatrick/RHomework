@@ -1,0 +1,6 @@
+"0","hist(simMeans5, col=""snow"", main=""Histogram of 500 means of 5 sample exponentials"", xlab=""Sample Mean"", ylab=""Frequency"")
+abline(v=sampleMean5, col=""green"", lwd=6, lty=2)
+abline(v=theoreticalMean5, col=""red"", lwd=3)
+hist(simMeans50, col=""azure2"", main=""Histogram of 500 means of 50 sample exponentials"", xlab=""Sample Mean"", ylab=""Frequency"");
+"
+"0","abline(v=sampleMean50, col=""blue"", lwd=6, lty=2)"
