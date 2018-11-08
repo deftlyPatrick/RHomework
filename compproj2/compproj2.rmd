@@ -1,5 +1,5 @@
 ---
-title: "CompProject2"
+title: "Computer Project2"
 author: "Patrick Wong"
 date: "11/07/2018"
 output: pdf_document
@@ -13,38 +13,47 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Algorithm 1: Generate 500 Sample Means from Sample Size n and for a Particular Distribution
 
-###I)
 ```{r}
-library(ggplot2)
+###Algorithm)
+
+#Sample size = 500
+sample_size <- 500
+#U(0.5)
 a <- 0
 b <- 5
-sample_size <- 500
-numList <- runif(sample_size, min = a, max = b)
-```
-###II)
-```{r}
+#Binomial with number of trials = 15, p = 0.2
 number_trials <- 15
 p <- 0.2
-rbinom(sample_size, size = number_trials, prob = p)
-```
-###III)
-```{r}
-lambda <- 5
-rexp(sample_size, rate = lambda)
-```
-###IV)
-```{r}
 mu <- 2
-rpois(sample_size, mu)
-```
-###Algorithm)
-```{r}
+#Exp(5)
+lambda <- 5
+
+#1)
+numList <- runif(sample_size, min = a, max = b)
+#NA = numlist
+
 storedData = rep(NA, sample_size)
 for (i in 1:sample_size){
   storedData[i] = i
-  print(storedData[i])
+  #Generate random sample of size n for the particular distribution (see I-IV)
+  #2)
+  rb <- rbinom(numList, size = number_trials, prob = p)
+  paste0(rb)
+  #3)
+  rxp <- rexp(numList, rate = lambda)
+  paste0(rxp)
+  #4)
+  rp <- rpois(numList, mu)
+  paste0(rp)
+  #####################################################
+  #Take the average over the n sampled values.
+  #Store the average into your vector from Step 1.
+  numListVar <- var(numList)
 }
+paste0("numListMean: ", sum(numList)/sample_size)
+paste0("numListVar: ", numListVar)
 ```
+
 ###Question 1)
 ```{r}
 # if the sample size is 5
@@ -55,8 +64,6 @@ sampleMean5 <- round(mean(simMeans5),3);
 paste0("sampleMean for n = 5: " , sampleMean5)
 theoreticalMean5 <- round(1/lambda,3);
 paste0("theoreticalMean for n = 5: ", theoreticalMean5)
-
-
 # if the sample size is 50
 m <- 50
 simulatedData50 <- matrix(rexp(m*sample_size, lambda), nrow=sample_size, ncol=m)
@@ -76,7 +83,6 @@ sampleVar5 <- round(var(simMeans5), 3)
 paste0("sampleVariance for n = 5: ", sampleVar5)
 theoretcalVar5 <- round((1/lambda)^2/n,3);
 paste0("theoreticalVariance for n = 5: ", theoretcalVar5)
-
 ## if the sample size is 50 
 simulatedData50 <- matrix(rexp(m*sample_size, lambda), nrow=sample_size, ncol=m)
 simMeans50 <- apply(simulatedData50, 1, mean)
@@ -90,7 +96,6 @@ paste0("theoreticalVariance for n = 50: ", theoretcalVar50)
 hist(simMeans5, col="snow", main="Histogram of 500 means of 5 sample exponentials", xlab="Sample Mean", ylab="Frequency")
 abline(v=sampleMean5, col="green", lwd=6, lty=2)
 abline(v=theoreticalMean5, col="red", lwd=3)
-
 hist(simMeans50, col="azure2", main="Histogram of 500 means of 50 sample exponentials", xlab="Sample Mean", ylab="Frequency");
 abline(v=sampleMean50, col="blue", lwd=6, lty=2)
 abline(v=theoreticalMean50, col="yellow", lwd=3)
@@ -100,7 +105,35 @@ abline(v=theoreticalMean50, col="yellow", lwd=3)
 ```{r}
 qqnorm(simMeans5)
 qqline(simMeans5)
-
 qqnorm(simMeans50)
 qqline(simMeans50)
+```
+### Question 5) :Summarize these findings for each of a-d, and use the central limit theorem to explain your findings.
+
+It tells us that when the sample sizes get larger, the distribution of means will be calculated through repeating sampling until it reaches normality. It also tells us that the same population will be approximately equal to the mean of the population. 
+
+### Algorithm 2: Use 40,000 Bootstrapped Means to Estimate Variance of the Mean
+```{r}
+m2 <- 50
+p2 <- 0.2
+X <- rbinom(m2,prob = p, size = m2)
+bMeans <- 40000
+xMeanArray <- array(dim = bMeans)
+for(i in 1:bMeans){
+  # sample(<your_vector_of_50_binomial_random_numbers>, sample = 50, replace = TRUE)
+  xMeanArray[i] <- mean(sample(X, n, replace = TRUE))
+}
+v <- var(xMeanArray)
+```
+
+###A) 
+```{r}
+paste0("Bootstrap Variance: " , v)
+```
+
+###B)
+```{r}
+#theoretical = np(1-p)/n
+t <- m2*p2*(1-p2)/m2
+paste0("Theoretical variance: ", t)
 ```
