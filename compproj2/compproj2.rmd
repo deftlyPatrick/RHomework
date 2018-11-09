@@ -15,108 +15,86 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 ###Algorithm)
+sampleMeans = 500
+storedData5 = rep(NA, sampleMeans)
+storedData50 = rep(NA, sampleMeans)
 
-#Sample size = 500
-sample_size <- 500
-#U(0.5)
-a <- 0
-b <- 5
-#Binomial with number of trials = 15, p = 0.2
-number_trials <- 15
-p <- 0.2
-mu <- 2
-#Exp(5)
-lambda <- 5
-
-#1)
-numList <- runif(sample_size, min = a, max = b)
-#NA = numlist
-
-storedData = rep(NA, sample_size)
-for (i in 1:sample_size){
-  storedData[i] = i
-  #Generate random sample of size n for the particular distribution (see I-IV)
-  #2)
-  rb <- rbinom(numList, size = number_trials, prob = p)
-  paste0(rb)
-  #3)
-  rxp <- rexp(numList, rate = lambda)
-  paste0(rxp)
-  #4)
-  rp <- rpois(numList, mu)
-  paste0(rp)
-  #####################################################
-  #Take the average over the n sampled values.
-  #Store the average into your vector from Step 1.
-  numListVar <- var(numList)
+for (i in 1:sampleMeans){
+  arrayVal5 = runif(5, min = 0, max = 5)
+  arrayVal50 = runif(50, min = 0, max = 5)
+  
+  average5 <- mean(arrayVal5)
+  average50 <- mean(arrayVal50)
+  
+  storedData5[i] <- average5
+  storedData50[i] <- average50
 }
-paste0("numListMean: ", sum(numList)/sample_size)
-paste0("numListVar: ", numListVar)
 ```
 
-###Question 1)
+
+
+###Question 1) 
 ```{r}
-# if the sample size is 5
-n <- 5
-simulatedData5 <- matrix(rexp(n*sample_size, lambda), nrow=sample_size, ncol=n)
-simMeans5 <- apply(simulatedData5, 1, mean)
-sampleMean5 <- round(mean(simMeans5),3);
-paste0("sampleMean for n = 5: " , sampleMean5)
-theoreticalMean5 <- round(1/lambda,3);
-paste0("theoreticalMean for n = 5: ", theoreticalMean5)
-# if the sample size is 50
-m <- 50
-simulatedData50 <- matrix(rexp(m*sample_size, lambda), nrow=sample_size, ncol=m)
-simMeans50 <- apply(simulatedData50, 1, mean)
-sampleMean50 <- round(mean(simMeans50),3);
-paste0("sampleMean for n = 50: " , sampleMean50)
-theoreticalMean50 <- round(1/lambda,3);
-paste0("theoreticalMean for n = 50: ", theoreticalMean50)
+paste0("Mean for Sample Size 5: ", mean(storedData5))
+paste0("Mean for Sample Size 50: ", mean(storedData50))
+
+theoreticalMean <-  (0.5*(0+5))
+paste0("Theoretical value for the uniform sample means: ", theoreticalMean)
 ```
+
+
 
 ###Question 2)
 ```{r}
-## if the sample size is 5
-simulatedData5 <- matrix(rexp(n*sample_size, lambda), nrow=sample_size, ncol=n)
-simMeans5 <- apply(simulatedData5, 1, mean)
-sampleVar5 <- round(var(simMeans5), 3)
-paste0("sampleVariance for n = 5: ", sampleVar5)
-theoretcalVar5 <- round((1/lambda)^2/n,3);
-paste0("theoreticalVariance for n = 5: ", theoretcalVar5)
-## if the sample size is 50 
-simulatedData50 <- matrix(rexp(m*sample_size, lambda), nrow=sample_size, ncol=m)
-simMeans50 <- apply(simulatedData50, 1, mean)
-sampleVar50 <- round(var(simMeans50), 3)
-paste0("sampleVariance for n = 50: ", sampleVar50)
-theoretcalVar50 <- round((1/lambda)^2/n,3);
-paste0("theoreticalVariance for n = 50: ", theoretcalVar50)
+paste0("Variance for Sample Size 5: ", var(storedData5))
+paste0("Variance for Sample Size 50: ", var(storedData50))
+
+theoreticalVar  <- ((1/12)*(5-0)^2)
+paste0("Theoretical value for the sample variance: ", theoreticalVar )
 ```
+
+
+
 ###Question 3)
 ```{r}
-hist(simMeans5, col="snow", main="Histogram of 500 means of 5 sample exponentials", xlab="Sample Mean", ylab="Frequency")
-abline(v=sampleMean5, col="green", lwd=6, lty=2)
-abline(v=theoreticalMean5, col="red", lwd=3)
-hist(simMeans50, col="azure2", main="Histogram of 500 means of 50 sample exponentials", xlab="Sample Mean", ylab="Frequency");
-abline(v=sampleMean50, col="blue", lwd=6, lty=2)
-abline(v=theoreticalMean50, col="yellow", lwd=3)
+hist(storedData5, col="snow", main="Histogram of 500 means of 5 sample exponentials"
+     , xlab="Sample Mean", ylab="Frequency")
+abline(v=mean(storedData5), col="green", lwd=6, lty=2)
+abline(v=theoreticalMean, col="red", lwd=3)
+
+hist(storedData50, col="azure2", main="Histogram of 500 means of 50 sample exponentials"
+     , xlab="Sample Mean", ylab="Frequency")
+abline(v=mean(storedData50), col="green", lwd=6, lty=2)
+abline(v=theoreticalMean, col="red", lwd=3)
 ```
+
+
 
 ###Question 4)
 ```{r}
-qqnorm(simMeans5)
-qqline(simMeans5)
-qqnorm(simMeans50)
-qqline(simMeans50)
+x <- storedData5
+y <- storedData50
+qqnorm(x)
+qqline(x)
+qqnorm(y)
+qqline(y)
 ```
-### Question 5) :Summarize these findings for each of a-d, and use the central limit theorem to explain your findings.
+
+
+
+### Question 5) Summarize these findings for each of a-d, and use the central limit theorem to explain your findings.
 
 It tells us that when the sample sizes get larger, the distribution of means will be calculated through repeating sampling until it reaches normality. It also tells us that the same population will be approximately equal to the mean of the population. 
+
+
+
 
 ### Algorithm 2: Use 40,000 Bootstrapped Means to Estimate Variance of the Mean
 ```{r}
 m2 <- 50
 p2 <- 0.2
-X <- rbinom(m2,prob = p, size = m2)
+n = 5
+X <- rbinom(m2,prob = p2, size = m2)
 bMeans <- 40000
 xMeanArray <- array(dim = bMeans)
 for(i in 1:bMeans){
@@ -126,10 +104,12 @@ for(i in 1:bMeans){
 v <- var(xMeanArray)
 ```
 
+
 ###A) 
 ```{r}
 paste0("Bootstrap Variance: " , v)
 ```
+
 
 ###B)
 ```{r}
