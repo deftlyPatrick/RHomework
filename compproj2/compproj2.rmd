@@ -14,6 +14,21 @@ knitr::opts_chunk$set(echo = TRUE)
 ### Algorithm 1: Generate 500 Sample Means from Sample Size n and for a Particular Distribution
 
 ```{r}
+a <- 0
+b <- 5
+sample_size <- 500
+numList <- runif(sample_size, min = a, max = b)
+
+number_trials <- 15
+p <- 0.2
+bino <- rbinom(sample_size, size = number_trials, prob = p)
+
+lambda <- 5
+exp <- rexp(sample_size, rate = lambda)
+
+mu <- 2
+pos <- rpois(sample_size, mu)
+
 ###Algorithm)
 sampleMeans = 500
 storedData5 = rep(NA, sampleMeans)
@@ -74,10 +89,28 @@ abline(v=theoreticalMean, col="red", lwd=3)
 ```{r}
 x <- storedData5
 y <- storedData50
+a <- numList
+b <- bino
+c <- exp
+d <- pos
 qqnorm(x)
 qqline(x)
+
 qqnorm(y)
 qqline(y)
+
+qqnorm(a)
+qqline(a)
+
+qqnorm(b)
+qqline(b)
+
+qqnorm(c)
+qqline(c)
+
+qqnorm(d)
+qqline(d)
+
 ```
 
 
