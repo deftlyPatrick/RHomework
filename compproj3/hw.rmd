@@ -1,0 +1,90 @@
+---
+title: "Computer Project 3"
+author: "Patrick Wong"
+date: "12/07/2018"
+output: pdf_document
+header-includes:
+  - \usepackage{amsmath} # for certain symbols or math formatting
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## MATH 324 Computer Project 3
+
+###Exercise 1. Here, we look at how t critical values behave as their df (degrees of freedom) increases:
+
+A) First, what is $z_{.05}$?
+
+```{r}
+a <- qnorm(0.05) * (-1)
+roundA <- round(a, 5)
+paste0("Z(0.05): ", roundA)
+```
+
+B) Second, if you look at $t_{.05, df}$ (t critical values for $\alpha = .05$) with df = 20, 40, 60, etc (continuing up by 20 each time), for what df does the t critical value first fall strictly within (e.g. < )
+
+i. .05 of $z_{.05}$?
+```{r}
+count1 <- 20
+b1 <- qt(0.05, count1) * (- 1)
+roundB1 <- round(b1, 5)
+
+while (roundB1 > roundA){
+  count1 = count1 + 20
+  b1 <- (qt(0.05, count1) * (-1))
+  roundB1 <- round(b1, 5)
+}
+paste0("DF: ", count1)
+```
+ii. .02 of $z_{.05}$?
+```{r}
+aii <- qnorm(0.02) * (-1)
+roundAii <- round(aii, 5)
+
+count2 <- 20
+b2 <- qt(0.02, count2) * (- 1)
+roundB2 <- round(b2, 5)
+
+while (roundB2 > roundAii){
+  count2 = count2 + 20
+  b2 <- (qt(0.02, count2) * (-1))
+  roundB2 <- round(b2, 5)
+}
+paste0("DF: ", count2)
+```
+iii. .01 of $z_{.05}$?
+```{r}
+aiii <- qnorm(0.01) * (-1)
+roundAiii <- round(aiii, 5)
+
+
+count3 <- 20
+b3 <- qt(0.01, count3) * (- 1)
+roundB3 <- round(b3, 5)
+
+while (roundB3 > roundAiii){
+  count3 = count3 + 20
+  b3 <- (qt(0.01, count3) * (-1))
+  roundB3 <- round(b3, 5)
+}
+paste0("DF: ", count3)
+```
+
+
+C) What do you think the difference will be between $z_{.05}$ and $t_{.05, df}$ as df $\rightarrow \infty$?
+
+By the data shown in Exercise 1B, it is displayed that as df approaches infinity, the $Z_{0.05}$ and $T_{0.05, df}$ will equal.
+
+
+###Exercise 2) A company with a large fleet of cars want to study the gasoline usage. They check the gasoline usage for 50 company trips chosen at random, finding a mean of 25.02 mpg and sample standard deviation is 4.83 mpg.
+
+###A) Which kind of confidence interval is appropriate to use here, z-interval or t-interval?
+
+Null hypothesis:
+$H_0: \mu$ >= 26
+
+Alternative hypothesis:
+$H_a : \mu$ < 26
