@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## MATH 324 Computer Project 3
 
-###Exercise 1. Here, we look at how t critical values behave as their df (degrees of freedom) increases:
+###Exercise 1: Here, we look at how t critical values behave as their df (degrees of freedom) increases:
 
 A) First, what is $z_{.05}$?
 
@@ -79,7 +79,7 @@ C) What do you think the difference will be between $z_{.05}$ and $t_{.05, df}$ 
 By the data shown in Exercise 1B, it is displayed that as df approaches infinity, the $Z_{0.05}$ and $T_{0.05, df}$ will equal.
 
 
-###Exercise 2) A company with a large fleet of cars want to study the gasoline usage. They check the gasoline usage for 50 company trips chosen at random, finding a mean of 25.02 mpg and sample standard deviation is 4.83 mpg.
+###Exercise 2: A company with a large fleet of cars want to study the gasoline usage. They check the gasoline usage for 50 company trips chosen at random, finding a mean of 25.02 mpg and sample standard deviation is 4.83 mpg.
 
 A) Which kind of confidence interval is appropriate to use here, z-interval or t-interval?
 
@@ -115,9 +115,9 @@ s <- 4.83
 n <- 50
 twoSided = function(mean, s, n){
 error <- 2.33*(s/sqrt(50))  ###margin of error
-mean1D <- mean + round(error,2)
-mean2D <- mean - round(error,2)
-int = c(mean2D, mean1D) ##print from low to high
+upperLim <- mean + round(error,2)
+lowerLim <- mean - round(error,2)
+int = c(lowerLim, upperLim) ##print from low to high
 return(int)
 }
 paste0("[", twoSided(mean, s, n), "]")
@@ -129,9 +129,9 @@ E) Please use R to construct a 98% upper confidence bound for the mean of the ga
 ```{r}
 upperConfd98 = function(mean, s, n){
 error <- 2.05*(s/sqrt(50))  ###margin of error
-mean1E <- mean + round(error,2)
-mean2E <- 25.02 - round(error,2)
-int = c(mean2E, mean1E) ##print from low to high
+upperLim <- mean + round(error,2)
+lowerLim <- 25.02 - round(error,2)
+int = c(lowerLim, upperLim) ##print from low to high
 return(int)
 }
 paste0("[", upperConfd98(mean, s, n), "]")
@@ -141,7 +141,7 @@ G) Apply the function you created in part (f) to demonstrate that larger sample 
 
 An first impression is to assume that the sample is a simple random sample and the information thatis gathered is usually provided in the problem. The sampling distribution is normally distributed. 
 
-###Exercise 3) In a class survey, students are asked how many hours they sleep per night. In the sample of 22 students, the (sample) mean is 6.77 hours with a (sample) standard deviation of 1.472 hours.  The parameter of interest is the mean number of hours slept per night in the population from which this sample was drawn, and the distribution of sleep for that population follows a normal distribution.
+###Exercise 3: In a class survey, students are asked how many hours they sleep per night. In the sample of 22 students, the (sample) mean is 6.77 hours with a (sample) standard deviation of 1.472 hours.  The parameter of interest is the mean number of hours slept per night in the population from which this sample was drawn, and the distribution of sleep for that population follows a normal distribution.
 
 A) Which kind of confidence interval is appropriate to use here, z-interval or t-interval?
   Use T-interval because n = 22 < 30 
@@ -171,15 +171,15 @@ s <- 1.473
 n <- 22
 slept = function(mean, s, n){
 error <- crit3*(s/sqrt(50))  ###margin of error
-mean1D <- mean + round(error,2)
-mean2D <- mean - round(error,2)
-int = c(mean2D, mean1D) ##print from low to high
+lowerLim <- mean + round(error,2)
+upperLim <- mean - round(error,2)
+int = c(lowerLim, upperLim) ##print from low to high
 return(int)
 }
 paste0("[", slept(mean, s, n), "]")
 ```
 
-###Exercise 4 In the year 2001, the Youth Risk Behavior survey done by the U.S. Center for Disease Control reported that 747 out of 1168 female 12th graders said they always use seatbelts when driving. Let's construct a 95% confidence interval for the proportion of 12th grade females in the population who always use seatbelts when driving.
+###Exercise 4: In the year 2001, the Youth Risk Behavior survey done by the U.S. Center for Disease Control reported that 747 out of 1168 female 12th graders said they always use seatbelts when driving. Let's construct a 95% confidence interval for the proportion of 12th grade females in the population who always use seatbelts when driving.
 
 A)  Use R to find the score CI for the proportion of 12th grade females in the population who always use seatbelts when driving.
 
@@ -213,3 +213,48 @@ C) How many times larger is the sample required in part b than the sample we hav
 multiple <- round((control_score/n), 2)
 paste0("It is ", multiple,  " times larger than the original sample")
 ```
+
+
+###Exercise 5: Consider the problem in Exercise 4 again. The U.S. Center for Disease Control wants to conduct a test, with $\alpha = 0.05$, to see whether the proportion of 12th grade female seatbelt users is not 50\%.
+
+a. Write appropriate hypotheses. Use both the symbols and words. (Is the alternative hypothesis one-sided or two-sided? It should be clear in what you write.)
+
+Null hypothesis: The proportion of female 12th grade seatbelt users is 50%
+Alternative hypothesis: The proportion of female 12th grade seatbelt users is not 50%
+
+Null hypothesis:
+$H_0: \mu$ = 50%
+
+Alternative hypothesis:
+$H_a : \mu \neq$ 50%
+
+b. What do you need to check to use your test? Please verify the conditions are met.
+
+That the samples is randomly drawn. ; That n < 10 of the population ; The population proportion P and (1-P) > 10%
+
+The conditions is satisfied, because samples is randomly drawn, 1168 < 10% of the population, and P(0.50) and (1-P) = 50%
+
+c. Use R to compute the test statistic and obtain a p-value. 
+
+```{r}
+x <- 747 ###number of girls using seatbelts
+n <- 1168 ###total amount of girls
+
+p <- x/n
+Popul_prop <- 0.50 ##population proportion
+level_sign <- 0.05 ##level of significance 
+standard_error <- sqrt((p*(1-p))/n)
+
+Z <- (p-Popul_prop/standard_error)
+paste0("Test statistic: ", round(Z,2))
+
+pValue <- 2*(pnorm(Z, mean , 1) )
+paste0("P-Value: ", pValue)
+```
+d. Make conclusions using the test statistic and p-value.
+
+The test statistic is 9.57 and the P-value is 0. This is where we reject the null hypothesis($H_o:$ p = 0.5) because $\alpha$ < 0.05.
+
+e. There is a link between confidence intervals and p-values, but for now we will just answer: if you return to the confidence interval in 4a, is 50\% included in the interval?
+
+The population proportion value that is provided indicicates that the 50% is not included in the 95% confidence interval because of the sufficient evidence to believe that "the proportion of female 12th graders that uses seatbelts is not 50% "
