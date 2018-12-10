@@ -81,10 +81,135 @@ By the data shown in Exercise 1B, it is displayed that as df approaches infinity
 
 ###Exercise 2) A company with a large fleet of cars want to study the gasoline usage. They check the gasoline usage for 50 company trips chosen at random, finding a mean of 25.02 mpg and sample standard deviation is 4.83 mpg.
 
-###A) Which kind of confidence interval is appropriate to use here, z-interval or t-interval?
+A) Which kind of confidence interval is appropriate to use here, z-interval or t-interval?
+
+Since n = 50 > 40
+It is a random sample test
+And the standard deviation is given
+
+It is a z-interval.
+
+B) What are the assumptions to check for the interval you chose?
 
 Null hypothesis:
-$H_0: \mu$ >= 26
+$H_0: \mu  \geq$ 26
 
 Alternative hypothesis:
 $H_a : \mu$ < 26
+
+C) Please use R to find the critical value the company needs when constructing a (two-sided) 98% CI.
+
+df = 50-1 
+df = 49
+```{r}
+crit2 <- qt(0.02/2, 49, lower.tail = FALSE) * (-1)
+```
+
+D) Please use R to construct a (two-sided) 98% CI for the mean of the general gasoline usage. 
+
+X $\pm Z_{\alpha /2} (\frac{\sigma}{\sqrt{n}})$
+
+```{r}
+mean <- 25.02
+s <- 4.83
+n <- 50
+twoSided = function(mean, s, n){
+error <- 2.33*(s/sqrt(50))  ###margin of error
+mean1D <- mean + round(error,2)
+mean2D <- mean - round(error,2)
+int = c(mean2D, mean1D) ##print from low to high
+return(int)
+}
+paste0("[", twoSided(mean, s, n), "]")
+```
+
+
+E) Please use R to construct a 98% upper confidence bound for the mean of the gasoline usage.
+
+```{r}
+upperConfd98 = function(mean, s, n){
+error <- 2.05*(s/sqrt(50))  ###margin of error
+mean1E <- mean + round(error,2)
+mean2E <- 25.02 - round(error,2)
+int = c(mean2E, mean1E) ##print from low to high
+return(int)
+}
+paste0("[", upperConfd98(mean, s, n), "]")
+```
+
+G) Apply the function you created in part (f) to demonstrate that larger sample size is required to achieve better accuracy (i.e, narrower CI width). Confidence level is fixed at 98%. Show at least three examples.
+
+An first impression is to assume that the sample is a simple random sample and the information thatis gathered is usually provided in the problem. The sampling distribution is normally distributed. 
+
+###Exercise 3) In a class survey, students are asked how many hours they sleep per night. In the sample of 22 students, the (sample) mean is 6.77 hours with a (sample) standard deviation of 1.472 hours.  The parameter of interest is the mean number of hours slept per night in the population from which this sample was drawn, and the distribution of sleep for that population follows a normal distribution.
+
+A) Which kind of confidence interval is appropriate to use here, z-interval or t-interval?
+  Use T-interval because n = 22 < 30 
+  
+B) What are the criteria to check in order to use the  distribution you chose?
+
+  Check if it is a random sample. ; 
+  Check if n > 30 ; 
+  Check if the distribution is normal. 
+
+C) Please use R to find the critical value they need when constructing a 90% CI.
+
+df = n-1
+df = 21
+
+```{r}
+crit3 <- round(qt(0.1/2, 21, lower.tail = FALSE), 4)
+```
+
+D) Please use R to find the 90% CI for the mean number of hours slept per night.
+
+X $\pm Z_{\alpha /2} (\frac{\sigma}{\sqrt{n}})$
+
+```{r}
+mean <- 6.77
+s <- 1.473
+n <- 22
+slept = function(mean, s, n){
+error <- crit3*(s/sqrt(50))  ###margin of error
+mean1D <- mean + round(error,2)
+mean2D <- mean - round(error,2)
+int = c(mean2D, mean1D) ##print from low to high
+return(int)
+}
+paste0("[", slept(mean, s, n), "]")
+```
+
+###Exercise 4 In the year 2001, the Youth Risk Behavior survey done by the U.S. Center for Disease Control reported that 747 out of 1168 female 12th graders said they always use seatbelts when driving. Let's construct a 95% confidence interval for the proportion of 12th grade females in the population who always use seatbelts when driving.
+
+A)  Use R to find the score CI for the proportion of 12th grade females in the population who always use seatbelts when driving.
+
+Sample statistic: $\hat{p} = \frac{x}{n}$
+Standard error: $\sqrt{\frac{\hat{p}(1- \hat{p})}{n}}$
+X $\pm Z_{\alpha /2} (\frac{\sigma}{\sqrt{n}})$
+
+```{r}
+x <- 747
+n <- 1168
+
+p <- x/n
+z <- 1.96
+
+standard_error <- sqrt((p*(1-p))/n)
+lowerLim <- round((p - 2*standard_error), 4)
+upperLim <- round((p + 2*standard_error), 4)
+paste0("CI: [", lowerLim , " ", upperLim, " ]")
+```
+
+B) Assuming there is no prior information or past experience available, what is the sample size necessary to control the score 95% CI width to be within 0.01?
+
+```{r}
+error <- 0.01
+control_score <- (z/error)^2
+paste0("The sample size necessary to control the score is ", control_score)
+```
+C) How many times larger is the sample required in part b than the sample we have?
+
+```{r}
+multiple <- round((control_score/n), 2)
+paste0("It is ", multiple,  " times larger than the original sample")
+```

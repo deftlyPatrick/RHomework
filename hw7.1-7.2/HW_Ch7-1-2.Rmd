@@ -1,0 +1,168 @@
+---
+subtitle: "Math 324: Probability and Statistics with Computing"
+title: "Homework Ch 7.1-7.2: CI (Confidence Intervals) & Large Sample CI for Population Mean and Proportion"
+date: "Due Thursday 11/15 (contributes to the 20% quiz grade)"
+# If you use this template, add your name too.
+header-includes:
+  - \usepackage{amsmath}
+  - \usepackage{xcolor}
+output: pdf_document
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)    # For knitting document and include_graphics function
+#library(ggplot2)  # For plotting
+#library(png) # gets dimensions of png files
+#library(jpeg) # gets dimensions of jpeg files
+```
+
+
+
+***
+\begin{center}
+
+\textbf{Purpose}
+
+\end{center}
+
+__Knowledge__
+
+\fbox{
+  \parbox{\textwidth}{
+    After doing this assignment you will understand:
+    \begin{enumerate}
+    \item What a 100($1-\alpha$)\% CI (confidence interval) tells you.
+    \item Wrong interpretations of CIs.
+    \end{enumerate}
+  }}
+
+
+__Skills__
+
+\fbox{
+  \parbox{\textwidth}{
+    After doing this assignment you will be able to:
+    \begin{enumerate}
+    \item Go through the steps to obtain a confidence interval to estimate a mean when $\sigma$ is unknown.
+    \item Go through the steps to obtain a score confidence interval to estimate a proportion.
+    \item Figure out sample size needed for a desired interval width.
+    \item Use R to help you obtain the bounds of a 100($1-\alpha$)\% CI.
+    \end{enumerate}
+  }}
+
+&nbsp;
+
+\textcolor{red}{\textbf{Please use your Rmd file for this unless otherwise noted. You need R to calculate the margin of error for CIs.} 
+}
+
+&nbsp;
+
+
+**Interpretting a CI (Confidence Interval)**
+
+\textcolor{red}{Please do this question. There's no calculations so you can type or handwrite as you please.}
+
+1. The alcohol content of 50 bottles of a particular cough syrup are randomly selected. The resulting 95\% CI is (7.8, 9.4). Let $\mu$ denote the average alcohol content for all bottles of this cough syrup (population). Pick out which 1 of the following 4 statements is true and explain why the others are false:
+    a. A 90\% confidence interval calculated from this same sample is wider than the given interval.
+    b. There is a 95\% chance that $\mu$ is between 7.8 and 9.4.
+    c. We can be highly confident that 95\% of all bottles of this type of cough syrup have an alcohol content that is between 7.8 and 9.4.
+    d. If we repeat the process of selecting a sample of size 50 and computing the corresponding 95\% CI 100 times, 95 of the resulting intervals will include $\mu$.
+
+-----
+
+
+&nbsp;
+&nbsp;
+
+**Large-Sample CI**
+
+\textcolor{red}{Please do 1 of these 3 questions. Do more if you need practice. 1 extra credit point on Quiz10 for each extra one you do.}
+
+2. For a random sample of 50 households with gas stoves monitored over a week, the sample mean $CO_2$ level (ppm) in the households was $\bar{x} = 654.16$, and the sample standard deviation was $s=164.43$ (note: this is not the standard error).
+    a. Check if the CLT (central limit theorem) applies and show the two assumptions that you check.
+    b. Calculate a 95\% (two-sided) confidence interval for true average $CO_2$ level in the population of households with gas stoves. (This is two steps, the first of which involves finding $z_{\alpha/2}$.)
+    c. Interpret your CI from b.
+    d. Suppose the investigators made a rough guess of $s=175$  before collecting data. What sample size would be necessary to obtain an interval width of 50 ppm for a confidence level of $95\%$?
+    
+&nbsp;
+&nbsp;
+
+3. The accompanying randomly sampled observations give the breakown voltage (kV) of a particular circuit under certain conditions.
+
+```{r} 
+    volts =c(62, 50, 53, 57, 41, 53, 55, 61, 59, 64,
+         50, 53, 64, 62, 50, 68, 54, 55, 57, 50,
+         55, 50, 56, 55, 46, 55, 53, 54, 52, 47,
+         47, 55, 57, 48, 63, 57, 57, 55, 53, 59,
+         53, 52, 50, 55, 60, 50, 56, 58)
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    a. Construct a boxplot of the data and comment on interesting features.
+    
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    b. Check if you can use the CLT and show the two assumptions you check.
+    
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    c. Calculate and interpret a 95\% CI for true average breakdown voltage $\mu$. Does it appear that $\mu$ has been precisely estimated? Explain.
+    
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    d. Suppose that the investigator believes that virtually all values of breakdown voltage are between 40 and 70 so that a conservative estimate of standard deviation is (70-40)/4 = 7.4. What sample size would be appropriate for the 95\% CI to have a width of 2 kV (so that $\mu$ is estimated to within 1 kV with 95\% confidence)?
+
+
+&nbsp;
+&nbsp;
+
+
+4. The layout.csv data (Layouts Data) from Week 11 Class #22 gives the number of seconds that two randomly sampled groups of users spend on a website. The first randomly sampled group sees a new web layout and the second randomly sampled group sees an old one. We are interested in finding the population mean difference between amount of time we hold user attention on the new versus the old layout. Use the layout.csv data: download it to the same directory as your Rmd file and run the following code.
+```{r}
+    layout = read.csv("layout.csv", header = TRUE)
+    new = na.exclude(layout$new)
+    old = na.exclude(layout$old)
+    length(new) # should be 46
+    length(old) # should be 51
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+a. Check that the CLT conditions are satisfied for each sample (new and old) and show what you check.
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+b. Create and interpret a 99\% CI for the difference in population mean amount of time the new layout holds attention versus old.
+
+
+
+-----
+
+&nbsp;
+&nbsp;
+
+**One-sided CI**
+
+\textcolor{red}{Please do the following question.}
+
+5.  Determine the confidence level for each of the following large-sample one-sided confidence bounds:
+    a. Upper bound: $\bar{x} + .84s/\sqrt{n}$
+    b. Lower bound: $\bar{x} - 2.05s/\sqrt{n}$
+    c. Upper bound: $\bar{x} + .67s/\sqrt{n}$
+
+-----
+
+&nbsp;
+&nbsp;
+
+**CIs for proportions**
+
+\textcolor{red}{Please do one of the following two questions. Do more if you need the practice. 1 EC on Quiz10 if you do both.}
+
+6. Digital streaming has shifted some of the focus from traditional TV commercials to online advertisements. The Harris poll reported in 2012 that 53\% of 2,343 American adults surveyed said they watched digitally streamed content. Calculate and interpret a 99\% score CI for the proportion of all adult Americans who watched digitally streamed content.
+
+7. Ceramic hip replacements are very durable but can also be squeaky. The May 11, 2008 issue of the New York Times reported that in one study of 143 individuals who received ceramic hips beween 2003 and 2005, 10 of the hips developed squeaking. Calculate and interpret the  95\% score CI for the true proportion of such hips that develop squeaking.
+    
+  
+
+
+
+
+
+
